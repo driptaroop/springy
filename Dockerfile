@@ -9,6 +9,6 @@ VOLUME /tmp
 RUN addgroup -S demo && adduser -S demo -G demo
 USER demo
 
-COPY build/libs/github-issue-tracker-*.jar /app.jar
+COPY build/libs/springy-*.jar /app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar", "-noverify"]

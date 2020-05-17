@@ -25,7 +25,7 @@ jobs:
         run: ./gradlew lintKotlin
 
       - name: execute gradle build
-        run: ./gradlew build
+        run: ./gradlew clean build
 
       - name: build docker image
         run: docker build . -t springy:latest
