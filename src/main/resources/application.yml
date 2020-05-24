@@ -1,0 +1,11 @@
+spring:
+  mvc:
+    log-request-details: true
+logging:
+  level:
+    web: debug
+springy:
+  conditions:
+    events: false
+    baseApplicationRunner: false
+    application-context: false
