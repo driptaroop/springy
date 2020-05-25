@@ -1,16 +1,19 @@
 package org.dripto.springy
 
+import org.dripto.springy.configproperties.ConfigProperties
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.Banner.Mode.LOG
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.availability.ApplicationAvailability
 import org.springframework.boot.context.event.ApplicationStartingEvent
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.context.ApplicationListener
 import org.springframework.context.annotation.Bean
 
 @SpringBootApplication
+@EnableConfigurationProperties(value = [ConfigProperties::class])
 class SpringyApplication {
 
     @Bean

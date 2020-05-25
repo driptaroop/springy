@@ -1,12 +1,12 @@
-package org.dripto.springy.applicationcontext
+package org.dripto.springy.configproperties
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Component
 
 @Component
 @ConditionalOnProperty(
-        value = ["application-context"],
+        value = ["config-properties"],
         prefix = "springy.conditions",
         havingValue = "true"
 )
-class ApplicationContextTrigger
+class ConfigPropertiesTrigger
