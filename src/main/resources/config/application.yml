@@ -1,0 +1,25 @@
+spring:
+  mvc:
+    log-request-details: true
+logging:
+  level:
+    web: debug
+springy:
+  conditions:
+    events: false
+    baseApplicationRunner: false
+    application-context: false
+    config-properties: true
+  config-properties:
+    stringparam: abc
+    intparam: 123
+    booleanparam: true
+    conversion-param: hello
+    duration-param: 20s
+    datasize-param: 20MB
+    null-param: ~
+    wrong-validation-param: 123
+    objectparam:
+      stringparam: abc
+      intparam: 123
+      booleanparam: true

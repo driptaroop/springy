@@ -23,8 +23,5 @@ jobs:
         with:
           java-version: 11
 
-      - name: Lint
-        run: ./gradlew lintKotlin
-
       - name: execute gradle build
         run: ./gradlew clean build
