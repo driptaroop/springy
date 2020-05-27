@@ -1,6 +1,6 @@
 package org.dripto.springy
 
-import org.dripto.springy.configproperties.ConfigProperties
+import org.dripto.springy.core.configproperties.ConfigProperties
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.Banner.Mode.LOG
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -47,3 +47,12 @@ fun main(args: Array<String>) {
         })
     }
 }
+/*fun main() {
+    val secret = "secret"
+    val text = "text"
+
+    val hashcode: HashCode = Hashing.hmacSha256(secret.toByteArray()).hashString(text, UTF_8)
+    val str = Base64Utils.encodeToString(hashcode.asBytes())
+    println(str)
+}
+*/

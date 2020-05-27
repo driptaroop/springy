@@ -4,12 +4,12 @@ spring:
 logging:
   level:
     web: debug
+server:
+  compression:
+    enabled: true
+  http2:
+    enabled: true
 springy:
-  conditions:
-    events: false
-    baseApplicationRunner: false
-    application-context: false
-    config-properties: true
   config-properties:
     stringparam: abc
     intparam: 123
