@@ -9,8 +9,13 @@ data class Employee(
         val department: Department,
         val address: String,
         val profession: String,
-        val birthDate: LocalDate
+        val birthDate: LocalDate,
+        val designation: Designation
 )
+
+enum class Designation {
+    JUN, MID, SEN
+}
 
 enum class Department {
     IT, SALES
