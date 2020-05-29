@@ -21,7 +21,7 @@ class CustomConverterFormatters {
         }
     }
 
-    //another implementation of formatter. works as same as `DesignationFormatter`
+    //another implementation of formatter. works as same as `DesignationFormatter` if declared as a bean
     @Suppress("unused")
     fun designationFormatter() = object: Formatter<Designation> {
         override fun print(source: Designation, locale: Locale) = when(source) {
