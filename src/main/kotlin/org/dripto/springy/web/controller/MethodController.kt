@@ -213,9 +213,8 @@ class MethodController{
                 .map { it.readAllBytes() }
                 .subscribe {
                     File(filepart.filename())
-                            .also {
-                                it.createNewFile()
-                            }.writeBytes(it)
+                            .also { file -> file.createNewFile() }
+                            .writeBytes(it)
                 }
     }
 

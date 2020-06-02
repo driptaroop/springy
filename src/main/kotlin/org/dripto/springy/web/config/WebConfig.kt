@@ -1,10 +1,19 @@
 package org.dripto.springy.web.config
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.module.SimpleModule
+import org.dripto.springy.core.model.Department
 import org.dripto.springy.web.formatter.CustomConverterFormatters
-import org.dripto.springy.web.formatter.DesignationFormatter
+import org.dripto.springy.web.serializers.CustomDepartmentDeserializer
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
+import org.springframework.boot.web.codec.CodecCustomizer
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.format.FormatterRegistry
+import org.springframework.http.codec.json.Jackson2JsonDecoder
+import org.springframework.http.codec.json.Jackson2JsonEncoder
 import org.springframework.web.reactive.config.WebFluxConfigurer
+
 
 @Configuration
 class WebConfig(
