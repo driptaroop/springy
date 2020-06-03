@@ -1,18 +1,11 @@
 package org.dripto.springy.web.config
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.module.SimpleModule
-import org.dripto.springy.core.model.Department
 import org.dripto.springy.web.formatter.CustomConverterFormatters
-import org.dripto.springy.web.serializers.CustomDepartmentDeserializer
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer
-import org.springframework.boot.web.codec.CodecCustomizer
-import org.springframework.context.annotation.Bean
+import org.dripto.springy.web.resolvers.PageableArgumentResolver
 import org.springframework.context.annotation.Configuration
 import org.springframework.format.FormatterRegistry
-import org.springframework.http.codec.json.Jackson2JsonDecoder
-import org.springframework.http.codec.json.Jackson2JsonEncoder
 import org.springframework.web.reactive.config.WebFluxConfigurer
+import org.springframework.web.reactive.result.method.annotation.ArgumentResolverConfigurer
 
 
 @Configuration
@@ -27,5 +20,9 @@ class WebConfig(
          * for example, DesignationFormatter is declared as a bean and is auto registered
          */
         registry.addConverter(customConverterFormatters.stringToDepartment())
+    }
+
+    override fun configureArgumentResolvers(configurer: ArgumentResolverConfigurer) {
+        configurer.addCustomResolver(PageableArgumentResolver())
     }
 }

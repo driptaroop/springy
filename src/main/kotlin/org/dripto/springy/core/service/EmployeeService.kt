@@ -1,9 +1,7 @@
 package org.dripto.springy.core.service
 
 import com.github.javafaker.Faker
-import org.dripto.springy.core.model.Department
-import org.dripto.springy.core.model.Designation
-import org.dripto.springy.core.model.Employee
+import org.dripto.springy.core.model.*
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.time.ZoneId
@@ -13,7 +11,7 @@ import java.util.concurrent.TimeUnit.DAYS
 class EmployeeService(private val faker: Faker) {
     val employees by lazy {
         with(faker) {
-            List(10) {
+            List(1000) {
                 Employee(
                         firstName = name().firstName(),
                         lastName = name().lastName(),
@@ -29,4 +27,7 @@ class EmployeeService(private val faker: Faker) {
             }
         }
     }
+
+    suspend fun getPaginatedEmployees(pageable: Pageable): Page<Employee>
+            = PageImpl(content = employees.take(pageable.pageSize), pageable = pageable)
 }

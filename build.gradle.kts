@@ -44,6 +44,9 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.strikt:strikt-core:0.26.1")
 	testImplementation("io.mockk:mockk:1.10.0")
+
+	//implementation("org.springframework.boot:spring-boot-starter-data-rest")
+	//runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<Test> {

@@ -1,8 +1,6 @@
 package org.dripto.springy.web.controller
 
-import org.dripto.springy.core.model.Department
-import org.dripto.springy.core.model.Designation
-import org.dripto.springy.core.model.Employee
+import org.dripto.springy.core.model.*
 import org.dripto.springy.core.service.EmployeeService
 import org.springframework.web.bind.annotation.*
 
@@ -15,6 +13,12 @@ class EmployeeRestController(private val employeeService: EmployeeService) {
 
     @GetMapping("/suspend")
     suspend fun getEmployeeListSuspended() = employeeService.employees
+
+    @GetMapping("/paginated")
+    suspend fun getEmployeesPaginated(
+            pageable: Pageable
+    )
+            = employeeService.getPaginatedEmployees(pageable)
 
     @PostMapping
     suspend fun postEmployee(@RequestBody employee: Employee) = employee
