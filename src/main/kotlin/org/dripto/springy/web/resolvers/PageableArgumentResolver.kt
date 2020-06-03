@@ -15,11 +15,17 @@ class PageableArgumentResolver: HandlerMethodArgumentResolver {
     override fun resolveArgument(parameter: MethodParameter, bindingContext: BindingContext, exchange: ServerWebExchange): Mono<Any> {
         val limit = exchange.request.queryParams.getFirst("limit")?.toIntOrNull()
         val offset = exchange.request.queryParams.getFirst("offset")?.toIntOrNull()
+
         return Mono.just (
-                if(limit == null || offset == null)
+                if(limit == null && offset == null) {
                     DefaultPageableRequest()
-                else
-                    DefaultPageableRequest(offset, limit)
+                }
+                else if ((limit == null && offset != null) || (limit != null && offset == null)){
+                    throw IllegalArgumentException("no value for the other")
+                }
+                else {
+                    DefaultPageableRequest(offset!!, limit!!)
+                }
         )
     }
 }
