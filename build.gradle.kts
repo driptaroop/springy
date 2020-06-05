@@ -35,6 +35,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.google.guava:guava:29.0-jre")
 	implementation("com.github.javafaker:javafaker:1.0.2")
+	implementation("org.zalando:problem-spring-webflux:0.25.2")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

@@ -1,9 +1,10 @@
-package org.dripto.springy.web.config
+package org.dripto.springy.web.advice
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.zalando.problem.spring.webflux.advice.ProblemHandling
 
 @RestControllerAdvice
 class SampleControllerAdvice {

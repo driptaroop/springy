@@ -2,12 +2,15 @@ package org.dripto.springy.core.service
 
 import com.github.javafaker.Faker
 import org.dripto.springy.core.model.*
+import org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_SINGLETON
+import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.concurrent.TimeUnit.DAYS
 
 @Service
+@Scope(SCOPE_SINGLETON)
 class EmployeeService(private val faker: Faker) {
     val employees by lazy {
         with(faker) {

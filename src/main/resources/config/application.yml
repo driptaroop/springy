@@ -10,6 +10,7 @@ server:
     enabled: true
   http2:
     enabled: true
+  shutdown: graceful
 springy:
   config-properties:
     stringparam: abc
