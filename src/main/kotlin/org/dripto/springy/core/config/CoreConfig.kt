@@ -20,27 +20,6 @@ class CoreConfig {
     fun faker() = Faker()
 
     @Bean
-    fun employeeRestControllerPostProcessor() = object: BeanPostProcessor {
-        override fun postProcessAfterInitialization(bean: Any, beanName: String): Any {
-            if(bean is EmployeeRestController){
-                println("EmployeeRestController post processor ===== $bean")
-            }
-            return bean
-        }
-    }
-
-    @Bean
-    fun objectMapperPostProcessor() = object: BeanPostProcessor {
-        override fun postProcessAfterInitialization(bean: Any, beanName: String): Any? {
-            if(bean is ObjectMapper) {
-                println(bean)
-                bean.registerModules(ProblemModule(), ConstraintViolationProblemModule())
-            }
-            return bean
-        }
-    }
-
-    @Bean
     @Order(-2) // The handler must have precedence over WebFluxResponseStatusExceptionHandler and Spring Boot's ErrorWebExceptionHandler
     fun problemExceptionHandler(mapper: ObjectMapper, problemHandling: ProblemHandling): WebExceptionHandler =
             ProblemExceptionHandler(mapper, problemHandling)

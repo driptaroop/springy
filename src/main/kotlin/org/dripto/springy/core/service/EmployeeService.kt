@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit.DAYS
 
 @Service
 @Scope(SCOPE_SINGLETON)
-class EmployeeService(private val faker: Faker) {
+class EmployeeService(private val faker: Faker, val employee: Employee) {
     val employees by lazy {
         with(faker) {
             List(1000) {
@@ -33,4 +33,6 @@ class EmployeeService(private val faker: Faker) {
 
     suspend fun getPaginatedEmployees(pageable: Pageable): Page<Employee>
             = PageImpl(content = employees.take(pageable.pageSize), pageable = pageable)
+
+    suspend fun getEmployeeBeanFactory() = employee
 }

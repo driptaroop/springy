@@ -7,6 +7,7 @@ import kotlinx.coroutines.reactive.awaitLast
 import kotlinx.coroutines.reactive.awaitSingle
 import kotlinx.coroutines.reactive.collect
 import org.dripto.springy.core.model.Simple
+import org.reactivestreams.Publisher
 import org.springframework.core.io.buffer.DataBuffer
 import org.springframework.core.io.buffer.DataBufferFactory
 import org.springframework.core.io.buffer.DataBufferUtils
@@ -198,15 +199,50 @@ class MethodController{
         return "OK"
     }
 
+    /**
+     * Note that WebFlux applications do not create a DataBufferFactory directly
+     * but instead access it through the ServerHttpResponse or the ClientHttpRequest
+     * on the client side. The type of factory depends on the underlying client or
+     * server, e.g. NettyDataBufferFactory for Reactor Netty, DefaultDataBufferFactory for others.
+     */
     @PostMapping("/multipart", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     suspend fun multipartMapping(
             @RequestPart("name") metadata: Part,
-            @RequestPart("file") filepart: FilePart
+            @RequestPart("file") filepart: FilePart,
+            httpResponse: ServerHttpResponse
     ) {
         //println(form)
         println(metadata)
         println(filepart)
-        filepart.content()
+        /**
+         * Filepart to file method 1
+         */
+        DataBufferUtils.join(filepart.content())
+                .subscribe {
+                    Files.write(
+                            Paths.get(filepart.filename()),
+                            it.asByteBuffer().array()
+                    )
+                }
+
+        /**
+         * Filepart to file method 2
+         */
+        /*filepart.content()
+                .reduce(
+                        httpResponse.bufferFactory().allocateBuffer()
+                ) {s, d -> s.write(d)}
+                .map { it.asByteBuffer() }
+                .subscribe{
+                    File(filepart.filename())
+                            .also { file -> file.createNewFile() }
+                            .writeBytes(it.array())
+                }*/
+
+        /**
+         * Filepart to file method 3
+         */
+        /*filepart.content()
                 .reduce(object : InputStream() {
                     override fun read() = -1
                 }) {  s: InputStream, d -> SequenceInputStream(s, d.asInputStream()) }
@@ -215,7 +251,7 @@ class MethodController{
                     File(filepart.filename())
                             .also { file -> file.createNewFile() }
                             .writeBytes(it)
-                }
+                }*/
     }
 
     data class MetaData (

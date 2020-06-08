@@ -1,12 +1,14 @@
 package org.dripto.springy.web.controller
 
-import org.dripto.springy.core.model.*
+import org.dripto.springy.core.model.Department
+import org.dripto.springy.core.model.Designation
+import org.dripto.springy.core.model.Employee
+import org.dripto.springy.core.model.Pageable
 import org.dripto.springy.core.service.EmployeeService
 import org.dripto.springy.web.validator.EmployeeValidator
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
 
 @RestController
 @RequestMapping("/v1/employee")
@@ -29,6 +31,9 @@ class EmployeeRestController(private val employeeService: EmployeeService) {
             pageable: Pageable
     )
             = employeeService.getPaginatedEmployees(pageable)
+
+    @GetMapping("/get-employee-bf")
+    suspend fun getEmployeeBeanFactory() = employeeService.getEmployeeBeanFactory()
 
     @PostMapping
     suspend fun postEmployee(@RequestBody @Validated employee: Employee) = employee

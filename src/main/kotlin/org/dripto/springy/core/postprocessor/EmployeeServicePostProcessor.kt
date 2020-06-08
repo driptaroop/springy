@@ -1,4 +1,4 @@
-package org.dripto.springy.core.config
+package org.dripto.springy.core.postprocessor
 
 import org.dripto.springy.core.service.EmployeeService
 import org.springframework.beans.factory.config.BeanPostProcessor
