@@ -1,0 +1,6 @@
+springy:
+  conditions:
+    events: false
+    baseApplicationRunner: false
+    application-context: false
+    config-properties: false

@@ -1,4 +1,4 @@
-package org.dripto.springy.configproperties
+package org.dripto.springy.core.configproperties
 
 import org.jetbrains.annotations.NotNull
 import org.springframework.boot.context.properties.ConfigurationProperties

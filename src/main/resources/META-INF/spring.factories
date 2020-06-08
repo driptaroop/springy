@@ -1,1 +1,2 @@
-org.springframework.context.ApplicationListener=org.dripto.springy.event.ApplicationContextInitializedEventListener
+org.springframework.context.ApplicationListener=org.dripto.springy.core.event.ApplicationContextInitializedEventListener
+org.springframework.boot.env.EnvironmentPostProcessor=org.dripto.springy.core.environment.CustomEnvironmentPostProcessor

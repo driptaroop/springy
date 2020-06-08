@@ -1,4 +1,4 @@
-package org.dripto.springy.applicationcontext
+package org.dripto.springy.core.applicationcontext
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Component

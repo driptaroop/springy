@@ -1,4 +1,4 @@
-package org.dripto.springy.event
+package org.dripto.springy.core.event
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.context.event.ApplicationReadyEvent

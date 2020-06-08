@@ -1,12 +1,12 @@
-package org.dripto.springy.configproperties
+package org.dripto.springy.core.event
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Component
 
 @Component
 @ConditionalOnProperty(
-        value = ["config-properties"],
+        value = ["events"],
         prefix = "springy.conditions",
         havingValue = "true"
 )
-class ConfigPropertiesTrigger
+class EventTrigger

@@ -1,4 +1,4 @@
-package org.dripto.springy.configproperties
+package org.dripto.springy.core.configproperties
 
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
