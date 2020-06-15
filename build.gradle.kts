@@ -44,6 +44,7 @@ dependencies {
 	implementation("org.fusesource.jansi:jansi:1.18")
 	implementation("com.querydsl:querydsl-jpa:4.3.1")
 	kapt("com.querydsl:querydsl-apt:4.3.1:jpa")
+	kapt("org.hibernate:hibernate-jpamodelgen:5.4.17.Final")
 
 	runtimeOnly("com.h2database:h2")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")

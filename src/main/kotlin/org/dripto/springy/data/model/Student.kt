@@ -18,7 +18,8 @@ data class Student(
         val department: Department,
         val address: String,
         val birthDate: LocalDate,
-        val school: String
+        val school: String,
+        val age: Int
 ) {
     enum class Department {
         SCIENCE, ARTS, COMMERCE

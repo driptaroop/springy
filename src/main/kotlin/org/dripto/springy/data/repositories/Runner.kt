@@ -1,21 +1,24 @@
-package org.dripto.springy.data.repositories.jdbc
+package org.dripto.springy.data.repositories
 
 import com.querydsl.core.types.Predicate
 import org.dripto.springy.data.model.QStudent
 import org.dripto.springy.data.model.QStudent.student
 import org.dripto.springy.data.model.Student
 import org.dripto.springy.data.model.Student.Department.COMMERCE
+import org.dripto.springy.data.model.Student_
 import org.dripto.springy.data.service.StudentService
-import org.dripto.springy.extension.pblu
-import org.dripto.springy.extension.pg
-import org.dripto.springy.extension.pm
-import org.dripto.springy.extension.py
+import org.dripto.springy.extension.*
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
+import org.springframework.data.domain.Example
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.data.domain.Sort.Order.desc
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Component
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
+import javax.persistence.criteria.Root
 
 
 @Component
@@ -38,9 +41,32 @@ class Runner(
         pm(studentJDBCRepository.findByDepartment(Student.Department.ARTS,
                 PageRequest.of(0,10, Sort.by(desc("roll")))).content)
 
-        //querydsl
+        /**
+         * querydsl - requires querydsl model generation as well.
+         * here querydsl-apt annotation processor(using kapt) is used to generate querydsl model
+         */
         val predicate: Predicate = student.department.eq(COMMERCE)
         py(studentJDBCRepository.findAll(predicate,
                 PageRequest.of(0, 5, Sort.by(desc("roll")))).content)
+
+        /**
+         * criteria - requires JPA meta-model generation as well.
+         * here hibernate-jpamodelgen annotation processor(using kapt) is used to generate meta model
+         */
+        val moreThan50YearsOld = Specification<Student> {
+            root, query, criteriaBuilder -> criteriaBuilder.greaterThan(root[Student_.age], 50)
+        }
+        pc(studentJDBCRepository
+                .findAll(moreThan50YearsOld,
+                        PageRequest.of(0, 5, Sort.by(desc("roll")))
+                )
+                .content)
+
+        /**
+         * query by example. not possible in the java way in kotlin if entity is data class with
+         * not not nullable properties
+         */
+        // val example = Example.of(Student(department = COMMERCE))
+        // studentJDBCRepository.findAll(example)
     }
 }

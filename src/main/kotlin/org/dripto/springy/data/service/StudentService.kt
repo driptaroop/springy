@@ -21,7 +21,8 @@ class StudentService(private val faker: Faker) {
                         birthDate = LocalDate.ofInstant(date().birthday().toInstant(), ZoneId.systemDefault()),
                         address = address().fullAddress(),
                         department = Student.Department.values().random(),
-                        school = educator().secondarySchool()
+                        school = educator().secondarySchool(),
+                        age = (20..80).random()
                 )
             }
         }
