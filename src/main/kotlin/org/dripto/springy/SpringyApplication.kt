@@ -1,6 +1,7 @@
 package org.dripto.springy
 
 import org.dripto.springy.core.configproperties.ConfigProperties
+import org.fusesource.jansi.AnsiConsole
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.Banner.Mode.LOG
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -11,6 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.context.ApplicationListener
 import org.springframework.context.annotation.Bean
+import javax.annotation.PreDestroy
 
 @SpringBootApplication
 @EnableConfigurationProperties(value = [ConfigProperties::class])
@@ -28,6 +30,11 @@ class SpringyApplication {
             ${applicationAvailability.livenessState}
             ${applicationAvailability.readinessState}
         """.trimIndent())
+    }
+
+    @PreDestroy
+    fun onExit() {
+        println("exiting")
     }
 }
 

@@ -5,6 +5,9 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
+	kotlin("plugin.jpa") version "1.3.72"
+	kotlin("kapt") version "1.3.72"
+	idea
 }
 
 group = "xyz.dripto"
@@ -36,18 +39,21 @@ dependencies {
 	implementation("com.google.guava:guava:29.0-jre")
 	implementation("com.github.javafaker:javafaker:1.0.2")
 	implementation("org.zalando:problem-spring-webflux:0.25.2")
+	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.fusesource.jansi:jansi:1.18")
+	implementation("com.querydsl:querydsl-jpa:4.3.1")
+	kapt("com.querydsl:querydsl-apt:4.3.1:jpa")
 
+	runtimeOnly("com.h2database:h2")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+	kapt("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.strikt:strikt-core:0.26.1")
 	testImplementation("io.mockk:mockk:1.10.0")
-
-	//implementation("org.springframework.boot:spring-boot-starter-data-rest")
-	//runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<Test> {
@@ -60,4 +66,16 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
+}
+
+idea {
+	module {
+		val kaptMain = file("build/generated/source/kapt/main")
+		sourceDirs.add(kaptMain)
+		generatedSourceDirs.add(kaptMain)
+	}
+}
+
+kapt {
+	useBuildCache = false
 }
