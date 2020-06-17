@@ -20,7 +20,8 @@ class CoreConfig {
     fun faker() = Faker()
 
     @Bean
-    @Order(-2) // The handler must have precedence over WebFluxResponseStatusExceptionHandler and Spring Boot's ErrorWebExceptionHandler
+    @Order(-2) // The handler must have precedence over WebFluxResponseStatusExceptionHandler and Spring Boot's
+    // ErrorWebExceptionHandler
     fun problemExceptionHandler(mapper: ObjectMapper, problemHandling: ProblemHandling): WebExceptionHandler =
             ProblemExceptionHandler(mapper, problemHandling)
 }

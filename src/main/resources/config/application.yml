@@ -1,9 +1,24 @@
 spring:
+  jpa:
+    properties:
+      hibernate.format_sql: true
+    generate-ddl: true
+    show-sql: true
   mvc:
     log-request-details: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
 logging:
   level:
     web: debug
+    org.hibernate:
+      SQL: DEBUG
+      type:
+        descriptor:
+          sql:
+            BasicBinder: TRACE
 server:
   port: 8080
   compression:
