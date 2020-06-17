@@ -4,3 +4,4 @@ springy:
     baseApplicationRunner: false
     application-context: false
     config-properties: false
+    data: false

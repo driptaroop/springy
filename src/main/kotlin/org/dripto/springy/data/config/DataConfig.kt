@@ -1,9 +1,12 @@
 package org.dripto.springy.data.config
 
+import org.dripto.springy.data.trigger.DataTrigger
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor
+import org.springframework.jdbc.datasource.DataSourceUtils
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter

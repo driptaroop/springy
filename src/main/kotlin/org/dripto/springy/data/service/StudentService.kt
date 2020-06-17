@@ -4,9 +4,7 @@ import com.github.javafaker.Faker
 import org.dripto.springy.data.model.Student
 import org.springframework.stereotype.Service
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.concurrent.TimeUnit
 
 @Service
 class StudentService(private val faker: Faker) {

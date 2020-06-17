@@ -8,6 +8,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.data.repository.query.QueryByExampleExecutor
 
+
 interface StudentJDBCRepository:
         PagingAndSortingRepository<Student, Int>,
         // for querydsl
