@@ -1,30 +1,28 @@
-package org.dripto.springy.data.repositories
+package org.dripto.springy.data.runner
 
 import com.querydsl.core.types.Predicate
-import org.dripto.springy.data.model.QStudent
 import org.dripto.springy.data.model.QStudent.student
 import org.dripto.springy.data.model.Student
 import org.dripto.springy.data.model.Student.Department.COMMERCE
 import org.dripto.springy.data.model.Student_
+import org.dripto.springy.data.repositories.StudentJDBCRepository
 import org.dripto.springy.data.service.StudentService
 import org.dripto.springy.data.trigger.DataTrigger
 import org.dripto.springy.extension.*
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
-import org.springframework.data.domain.Example
+import org.springframework.context.annotation.Profile
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.data.domain.Sort.Order.desc
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Component
-import javax.persistence.criteria.CriteriaBuilder
-import javax.persistence.criteria.CriteriaQuery
-import javax.persistence.criteria.Root
 
 
 @Component
 @ConditionalOnBean(DataTrigger::class)
+@Profile("!pg")
 class Runner(
         private val studentJDBCRepository: StudentJDBCRepository,
         private val studentService: StudentService
