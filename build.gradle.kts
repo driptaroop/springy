@@ -46,7 +46,7 @@ dependencies {
 	kapt("com.querydsl:querydsl-apt:4.3.1:jpa")
 	kapt("org.hibernate:hibernate-jpamodelgen:5.4.17.Final")
 
-	runtimeOnly("com.h2database:h2")
+	implementation("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	kapt("org.springframework.boot:spring-boot-configuration-processor")
